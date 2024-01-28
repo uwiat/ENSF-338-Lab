@@ -16,8 +16,12 @@ for record in records:
     
 records.reverse()
 
+# Write the records as JSON objects to the file
 with open('output.2.3.json', 'w') as file:
     json.dump(records, file)
+    
+        
+    
     
     
     
