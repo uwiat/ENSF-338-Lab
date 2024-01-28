@@ -1,4 +1,4 @@
-# EX 2.2
+# EX 2.4
 import timeit
 file = open('pg2701.txt', encoding="utf8")
 
