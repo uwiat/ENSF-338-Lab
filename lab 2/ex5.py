@@ -102,6 +102,6 @@ plt.show()
 # a - coefficient: this paremeter indicates how quick the time increases logarithmcally to the array size.
 # b - constant: baseline time measurement offset. 
 
-# The results conclude to be very similar to what my prediction were for both linear and binary search results. 
-#The results showed that the functions align with the theoretical aspects of both search theorems where the linear 
-#search scales linearly with the size of data and on the other hand, binary search scales logrithmically making it ideally efficient for large datasets. 
+# The results conclude to be very similar to what my predictions were for both linear and binary search results. 
+# The results showed that the functions align with the theoretical aspects of both search theorems where the linear 
+# search scales linearly with the size of data and on the other hand, binary search scales logrithmically making it ideally efficient for large datasets. 
