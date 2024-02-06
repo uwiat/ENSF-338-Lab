@@ -8,7 +8,6 @@ The number of direction changes or movements required to get to EY128 would be t
 This is the worst case as you are going through 14 rooms to reach the room EY128 so total of 15 steps.
 
 
-
 4) Worst-case or best-case:
 
 Worst-case scenario: The worst-case scenario could involve a complex path, where the person has to go through multiple rooms before reaching EY128 that would be 15 steps.
