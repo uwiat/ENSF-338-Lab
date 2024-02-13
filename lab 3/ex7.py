@@ -50,7 +50,7 @@ bestResultIndex = results.index(best_result)
 bestResultIndex = bestResultIndex*100000
 print('The best result out of the average of ten runs of the task is ',best_result)
 print('The midpoint correlating to this time is ',bestResultIndex)
-
+# Ex 7.3
 plt.scatter(indexOfMidpoints, results, color='blue', label='Execution Time')
 plt.title('Execution Time by Midpoint Index')
 plt.xlabel('Midpoint Index')
@@ -60,7 +60,7 @@ plt.grid(True)
 plt.show()
 
 f.close()
-
+# Ex 7.4
 # On average the initial midpoint increases proportionally to the performance time of 
 # the program, I think this is due to the need for a larger number of passes for larger 
 # midpoints within the array. 
