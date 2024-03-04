@@ -44,7 +44,7 @@ class LinkedListStack:
 def generate_random_tasks_for_linked_list(num_tasks):
     tasks = []
     for _ in range(num_tasks):
-        LinkedListStack()
+        task = LinkedListStack()
         task = random.choices([f"task.push", f"task.pop"], weights=[0.7, 0.3])[0]
         tasks.append(task)
     return tasks
