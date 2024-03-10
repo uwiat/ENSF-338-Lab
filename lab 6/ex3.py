@@ -9,7 +9,7 @@ def evaluate(root):
 		return 0
 	
 	if root.left is None and root.right is None:
-		return int(root.value)
+		return root.value
 	
 	left_sum = evaluate(root.left)
 	right_sum = evaluate(root.right)
@@ -23,35 +23,52 @@ def evaluate(root):
 	elif root.value == '/':
 		return left_sum / right_sum
 	
-def buildTree(tokens):
+def buildTree(expression):
+	precedence = {'+':1, '-':1, '*':2, '/':2}
+	operators = ['+', '-', '*', '/']
 	stack = []
+	operandStack = []
 	
-	for token in tokens:
-		if token in "*/+-":
-			node = Node(token)
-			node.right = stack.pop()
-			node.left = stack.pop()
-			stack.append(node)
-			
-		elif token not in "()":
-			stack.append(Node(token))
-			
+	for token in expression:
+		if token.isdigit():
+			operandStack.append(Node(int(token)))
+		elif token in operators:
+			while stack and stack[-1] != '(' and precedence[token] <= precedence[stack[-1]]:
+				right = operandStack.pop()
+				left = operandStack.pop()
+				op = stack.pop()
+				operator = Node(op)
+				operator.left = left
+				operator.right = right
+				operandStack.append(operator)
+			stack.append(token)
 		elif token == '(':
-			expression = []
-			while stack and stack[-1].value != ')':
-				expression.append(stack.pop().value)
-			if stack:
-				stack.pop()  # Remove the ')'
-			root = buildTree(expression)
-			stack.append(root)
+			stack.append(token)
+		elif token == ')':
+			while stack and stack[-1] != '(':
+				right = operandStack.pop()
+				left = operandStack.pop()
+				op = stack.pop()
+				operator = Node(op)
+				operator.left = left
+				operator.right = right
+				operandStack.append(operator)
+			stack.pop()  # discard '('
 			
-	return stack[0] if stack else None
+	while stack:
+		right = operandStack.pop()
+		left = operandStack.pop()
+		op = stack.pop()
+		operator = Node(op)
+		operator.left = left
+		operator.right = right
+		operandStack.append(operator)
+		
+	return operandStack.pop() if operandStack else None
 
 expression = input("Enter the expression: ").split()
-root = buildTree(expression[::-1])
-print(root)
+root = buildTree(expression)
 result = evaluate(root)
-
 print(result)
 
 
