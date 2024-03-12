@@ -2,7 +2,6 @@ import random
 import time
 import matplotlib.pyplot as plt
 
-
 # 1. Binary search tree with insertion and search operations 
 class Node:
     def __init__(self, data, parent=None, left=None, right=None):
@@ -53,6 +52,7 @@ def balance(node):
         return height(node.left) - height(node.right)
     
     
+    
 # 3. Generate a 1000 random search tasks
 def generate_search_tasks(n_tasks, n_numbers):
     tasks = []
@@ -66,7 +66,15 @@ def generate_search_tasks(n_tasks, n_numbers):
 
 
 # 4. Measure average performance and largest absolute balance value
+def max_balance(node):
+    if node is None:
+        return 0
+    else:
+        return max(abs(balance(node)), max_balance(node.left), max_balance(node.right))
+    
 def measure_performance(tasks):
+    balance_values = []
+    search_times = []
     for i, task in enumerate(tasks, start=1):
         root = None
         for number in task:
@@ -78,12 +86,25 @@ def measure_performance(tasks):
         end_time = time.time()
         
         avg_search_time = (end_time - start_time) / len(task)
-        largest_balance = balance(root)
+        largest_balance = max_balance(root)
         
+        balance_values.append(largest_balance)
+        search_times.append(avg_search_time)
+        
+        print(f"Task {i}: Average search time = {avg_search_time}, Largest absolute balance = {largest_balance}")        
             
+    # 5. Scatterplot
+    plt.scatter(balance_values, search_times)
+    plt.xlabel('Absolute Balance')
+    plt.ylabel('Search Time')
+    plt.title('Scatterplot of Search Time vs Absolute Balance')
+    plt.show()
+
 
 tasks = generate_search_tasks(1000, 1000)
 measure_performance(tasks)
+
+
 
 
         
