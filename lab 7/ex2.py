@@ -98,24 +98,24 @@ def max_balance(node):
     else:
         return max(abs(balance(node)), max_balance(node.left), max_balance(node.right))
     
-def measure_performance(tasks):
-    balance_values = []
-    search_times = []
-    for i, task in enumerate(tasks, start=1):
-        root = None
-        for number in task:
-            root = insert(number, root)
-            
-        start_time = time.time()
-        for number in task:
-            search(number, root)
-        end_time = time.time()
-        
-        avg_search_time = (end_time - start_time) / len(task)
-        largest_balance = max_balance(root)
-        
-        balance_values.append(largest_balance)
-        search_times.append(avg_search_time)
+#def measure_performance(tasks):
+#   balance_values = []
+#   search_times = []
+#   for i, task in enumerate(tasks, start=1):
+#       root = None
+#       for number in task:
+#           root = insert(number, root)
+#           
+#       start_time = time.time()
+#       for number in task:
+#           search(number, root)
+#       end_time = time.time()
+#       
+#       avg_search_time = (end_time - start_time) / len(task)
+#       largest_balance = max_balance(root)
+#       
+#       balance_values.append(largest_balance)
+#       search_times.append(avg_search_time)
         
 #       print(f"Task {i}: Average search time = {avg_search_time}, Largest absolute balance = {largest_balance}")        
 #           
